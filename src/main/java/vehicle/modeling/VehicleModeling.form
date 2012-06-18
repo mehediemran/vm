@@ -1227,28 +1227,56 @@
                           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <model>
+                            <item value="Type 1"/>
+                            <item value="Type 2"/>
+                            <item value="Type 3"/>
+                            <item value="Type 4"/>
+                          </model>
+                        </properties>
                       </component>
                       <component id="9a1f0" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
                         <constraints>
                           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <model>
+                            <item value="Type 1"/>
+                            <item value="Type 2"/>
+                            <item value="Type 3"/>
+                            <item value="Type 4"/>
+                          </model>
+                        </properties>
                       </component>
                       <component id="f4387" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
                         <constraints>
                           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <model>
+                            <item value="Type 1"/>
+                            <item value="Type 2"/>
+                            <item value="Type 3"/>
+                            <item value="Type 4"/>
+                          </model>
+                        </properties>
                       </component>
                       <component id="ae180" class="javax.swing.JComboBox" binding="comboBox4" default-binding="true">
                         <constraints>
                           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <model>
+                            <item value="Type 1"/>
+                            <item value="Type 2"/>
+                            <item value="Type 3"/>
+                            <item value="Type 4"/>
+                          </model>
+                        </properties>
                       </component>
                       <component id="54787" class="javax.swing.JComboBox" binding="cbsa">
                         <constraints>
@@ -1257,7 +1285,6 @@
                         </constraints>
                         <properties>
                           <model>
-                            <item value="Please Select"/>
                             <item value="Angle 1"/>
                             <item value="Angle 2"/>
                           </model>
@@ -1290,54 +1317,139 @@
                 <properties/>
                 <border type="none" title="Output"/>
                 <children>
-                  <vspacer id="3b214">
-                    <constraints>
-                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="1" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="1.0"/>
-                    </constraints>
-                  </vspacer>
-                  <hspacer id="bed28">
-                    <constraints>
-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
-                      <gridbag weightx="1.0" weighty="0.0"/>
-                    </constraints>
-                  </hspacer>
                   <grid id="8f201" layout-manager="GridBagLayout">
                     <constraints>
-                      <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties/>
                     <border type="none"/>
+                    <children/>
+                  </grid>
+                  <grid id="9653e" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                    <border type="etched"/>
                     <children>
-                      <component id="56b04" class="javax.swing.JScrollBar" binding="scrollBar1" default-binding="true">
+                      <component id="b9aa3" class="javax.swing.JSlider" binding="slider1" default-binding="true">
                         <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="0" anchor="9" fill="0" indent="12" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
-                          <maximum value="60"/>
-                          <minimum value="0"/>
-                          <minimumSize width="5" height="15"/>
-                          <orientation value="0"/>
-                          <preferredSize width="500" height="15"/>
-                          <value value="0"/>
-                          <visibleAmount value="0"/>
+                          <paintLabels value="false"/>
+                          <paintTicks value="false"/>
+                          <paintTrack value="true"/>
+                          <preferredSize width="700" height="29"/>
+                          <snapToTicks value="false"/>
+                          <valueIsAdjusting value="true"/>
                         </properties>
                       </component>
                       <component id="d7394" class="javax.swing.JTextField" binding="time0TextField" default-binding="true">
                         <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="7" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
-                          <gridbag weightx="0.0" weighty="0.0"/>
+                          <gridbag weightx="2.0" weighty="0.0"/>
                         </constraints>
                         <properties>
+                          <minimumSize width="200" height="28"/>
+                          <preferredSize width="100" height="28"/>
                           <text value="Time: 0"/>
                         </properties>
                       </component>
                     </children>
                   </grid>
+                  <grid id="3f48b" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="1.0"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none" title="Wheel Forces In X Axis"/>
+                    <children>
+                      <grid id="2242" layout-manager="GridBagLayout">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="1.0" weighty="0.0"/>
+                        </constraints>
+                        <properties/>
+                        <border type="etched"/>
+                        <children>
+                          <component id="6110" class="javax.swing.JComboBox" binding="comboBox5" default-binding="true">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                              <gridbag weightx="0.0" weighty="1.0"/>
+                            </constraints>
+                            <properties>
+                              <model>
+                                <item value="Front Left"/>
+                                <item value="Front Right"/>
+                                <item value="Rear Left"/>
+                                <item value="Rear Right"/>
+                              </model>
+                            </properties>
+                          </component>
+                          <component id="56789" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="1" use-parent-layout="false">
+                                <preferred-size width="100" height="-1"/>
+                              </grid>
+                              <gridbag weightx="1.0" weighty="1.0"/>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="f2366" class="javax.swing.JLabel">
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                              <gridbag weightx="0.0" weighty="1.0"/>
+                            </constraints>
+                            <properties>
+                              <font style="1"/>
+                              <text value="N"/>
+                            </properties>
+                          </component>
+                          <vspacer id="d5f4f">
+                            <constraints>
+                              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="4" use-parent-layout="false"/>
+                              <gridbag weightx="0.0" weighty="9.0"/>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                      <grid id="250ce" binding="imgWheelForceXAxis" layout-manager="BorderLayout" hgap="0" vgap="0">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="15" use-parent-layout="false">
+                            <preferred-size width="200" height="-1"/>
+                          </grid>
+                          <gridbag weightx="10.0" weighty="1.0"/>
+                        </constraints>
+                        <properties>
+                          <minimumSize width="200" height="200"/>
+                        </properties>
+                        <border type="etched"/>
+                        <children/>
+                      </grid>
+                    </children>
+                  </grid>
+                  <grid id="f55a3" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none" title="Wheel Forces in Y Axis"/>
+                    <children/>
+                  </grid>
+                  <vspacer id="8ea1a">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="1" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="1.0"/>
+                    </constraints>
+                  </vspacer>
                 </children>
               </grid>
             </children>

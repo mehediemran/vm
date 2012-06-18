@@ -20,7 +20,7 @@ public class Utils {
         return !isEmpty(data);
     }
 
-    static PieDataset createDataset() {
+    public static PieDataset createDataset() {
         DefaultPieDataset result = new DefaultPieDataset();
         result.setValue("Linux", 29);
         result.setValue("Mac", 20);
@@ -29,7 +29,7 @@ public class Utils {
 
     }
 
-    static JFreeChart createChart(PieDataset dataset, String title) {
+    public static JFreeChart createChart(PieDataset dataset, String title) {
 
         JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
 

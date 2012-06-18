@@ -6,11 +6,11 @@ import org.jfree.data.general.PieDataset;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,11 +51,14 @@ public class VehicleModeling {
     private JComboBox comboBox2;
     private JComboBox comboBox3;
     private JComboBox comboBox4;
-    private JScrollBar scrollBar1;
     private JTextField time0TextField;
     private JComboBox cbsa;
     private JPanel imgPanel;
     private JPanel imgBodyShapeType;
+    private JSlider slider1;
+    private JComboBox comboBox5;
+    private JTextField textField3;
+    private JPanel imgWheelForceXAxis;
 
 
     public VehicleModeling() {
@@ -68,26 +71,7 @@ public class VehicleModeling {
                 System.out.println(id);
             }
         });
-        scrollBar1.addAdjustmentListener(new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent adjustmentEvent) {
-                time0TextField.setText("Time: " + String.valueOf(scrollBar1.getValue()));
-            }
-        });
-        cbsa.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
 
-                PieDataset pieDataset = Utils.createDataset();
-                JFreeChart chart = Utils.createChart(pieDataset, "Sample Pie Chart");
-                ChartPanel chartPanel = new ChartPanel(chart);
-                chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-                chartPanel.setVisible(true);
-
-                imgPanel.add(BorderLayout.CENTER, chartPanel);
-                imgPanel.setVisible(true);
-                imgPanel.validate();
-
-            }
-        });
         cbbst.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String bodyShapeType = cbbst.getSelectedItem().toString();
@@ -106,6 +90,112 @@ public class VehicleModeling {
                 }
             }
         });
+        slider1.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                time0TextField.setText("Time: " + String.valueOf(slider1.getValue()));
+            }
+        });
+        comboBox5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String graphTitle = comboBox5.getSelectedItem().toString();
+                String graphDataTitle = "wheel_force_x_axis_" + graphTitle.replaceAll(" ", "_").toLowerCase();
+
+                Dimension size = imgWheelForceXAxis.getSize();
+                size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+
+                ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+
+                imgWheelForceXAxis.add(BorderLayout.CENTER, chartPanel);
+                imgWheelForceXAxis.setVisible(true);
+                imgWheelForceXAxis.validate();
+
+            }
+        });
+        cbsa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String graphTitle = "Steering " + cbsa.getSelectedItem().toString();
+                String graphDataTitle = graphTitle.replaceAll(" ", "_").toLowerCase();
+
+                Dimension size = imgPanel.getSize();
+                size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+
+                ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+
+                imgPanel.add(BorderLayout.CENTER, chartPanel);
+                imgPanel.setVisible(true);
+                imgPanel.validate();
+            }
+        });
+        comboBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String graphTitle = "Wheel Torque Front Left " + comboBox1.getSelectedItem().toString();
+                String graphDataTitle = graphTitle.replaceAll(" ", "_").toLowerCase();
+
+                Dimension size = imgPanel.getSize();
+                size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+
+                ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+
+                imgPanel.add(BorderLayout.CENTER, chartPanel);
+                imgPanel.setVisible(true);
+                imgPanel.validate();
+
+            }
+        });
+        comboBox2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String graphTitle = "Wheel Torque Front Right " + comboBox2.getSelectedItem().toString();
+                String graphDataTitle = graphTitle.replaceAll(" ", "_").toLowerCase();
+
+                Dimension size = imgPanel.getSize();
+                size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+
+                ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+
+                imgPanel.add(BorderLayout.CENTER, chartPanel);
+                imgPanel.setVisible(true);
+                imgPanel.validate();
+
+            }
+        });
+        comboBox3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String graphTitle = "Wheel Torque Rear Left " + comboBox3.getSelectedItem().toString();
+                String graphDataTitle = graphTitle.replaceAll(" ", "_").toLowerCase();
+
+                Dimension size = imgPanel.getSize();
+                size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+
+                ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+
+                imgPanel.add(BorderLayout.CENTER, chartPanel);
+                imgPanel.setVisible(true);
+                imgPanel.validate();
+
+            }
+        });
+        comboBox4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String graphTitle = "Wheel Torque Rear Right " + comboBox4.getSelectedItem().toString();
+                String graphDataTitle = graphTitle.replaceAll(" ", "_").toLowerCase();
+
+                Dimension size = imgPanel.getSize();
+                size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+
+                ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+
+                imgPanel.add(BorderLayout.CENTER, chartPanel);
+                imgPanel.setVisible(true);
+                imgPanel.validate();
+
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -115,6 +205,4 @@ public class VehicleModeling {
         frame.pack();
         frame.setVisible(true);
     }
-
-
 }
