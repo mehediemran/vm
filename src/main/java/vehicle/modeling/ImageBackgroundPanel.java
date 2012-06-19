@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * @author Atiqur Rahman
  * @since 6/17/12 5:29 PM
  */
-class ImageBackgroundPanel extends JPanel {
+public class ImageBackgroundPanel extends JPanel {
     BufferedImage image;
     int panelWidth;
     int panelHeight;
@@ -29,6 +29,7 @@ class ImageBackgroundPanel extends JPanel {
         super.paintComponent(g);
         resizeImage();
         g.drawImage(image, 0, 0, panelWidth, panelHeight, this);
+        g.dispose();
     }
 
     protected void resizeImage() {
