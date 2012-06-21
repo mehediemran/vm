@@ -1,8 +1,6 @@
 package vehicle.modeling;
 
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.PieDataset;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -53,12 +51,14 @@ public class VehicleModeling {
     private JComboBox comboBox4;
     private JTextField time0TextField;
     private JComboBox cbsa;
-    private JPanel imgPanel;
+    private JPanel inputGraphPanel;
     private JPanel imgBodyShapeType;
     private JSlider slider1;
     private JComboBox comboBox5;
     private JTextField textField3;
     private JPanel imgWheelForceXAxis;
+    private JPanel imgWheelForceYAxis;
+    private JComboBox cmbWfYAxis;
 
 
     public VehicleModeling() {
@@ -75,21 +75,8 @@ public class VehicleModeling {
         cbbst.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String bodyShapeType = cbbst.getSelectedItem().toString();
-                if (!bodyShapeType.equals("Select")) {
-                    try {
-                        imgBodyShapeType.removeAll();
-                        InputStream resourceAsStream = this.getClass().getResourceAsStream("/body-shape/" + bodyShapeType + ".jpg");
-                        BufferedImage image = ImageIO.read(resourceAsStream);
-                        ImageBackgroundPanel ibp = new ImageBackgroundPanel(image, imgBodyShapeType.getWidth(), imgBodyShapeType.getHeight());
-                        imgBodyShapeType.add(BorderLayout.CENTER, ibp);
-                        imgBodyShapeType.validate();
-                        imgBodyShapeType.repaint();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                }
+                String bodyShapeUrl = "/body-shape/" + bodyShapeType + ".jpg";
+                paintBodyShape(bodyShapeUrl, imgBodyShapeType);
             }
         });
         slider1.addChangeListener(new ChangeListener() {
@@ -106,41 +93,52 @@ public class VehicleModeling {
         cbsa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                paintGraph(cbsa, imgPanel, "Steering ", "");
+                paintGraph(cbsa, inputGraphPanel, "Steering ", "");
             }
         });
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                paintGraph(comboBox1, imgPanel, "Wheel Torque Front Left ", "");
+                paintGraph(comboBox1, inputGraphPanel, "Wheel Torque Front Left ", "");
             }
         });
         comboBox2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                paintGraph(comboBox2, imgPanel, "Wheel Torque Front Right ", "");
+                paintGraph(comboBox2, inputGraphPanel, "Wheel Torque Front Right ", "");
             }
         });
         comboBox3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                paintGraph(comboBox3, imgPanel, "Wheel Torque Rear Left ", "");
+                paintGraph(comboBox3, inputGraphPanel, "Wheel Torque Rear Left ", "");
             }
         });
         comboBox4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                paintGraph(comboBox4, imgPanel, "Wheel Torque Rear Right ", "");
+                paintGraph(comboBox4, inputGraphPanel, "Wheel Torque Rear Right ", "");
+            }
+        });
+        cmbWfYAxis.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                paintGraph(cmbWfYAxis, imgWheelForceYAxis, "", "wheel_force_y_axis_");
             }
         });
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Vehicle Modeling");
-        frame.setContentPane(new VehicleModeling().tabbedPane1);
+        VehicleModeling vehicleModeling = new VehicleModeling();
+        frame.setContentPane(vehicleModeling.tabbedPane1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        paintBodyShape("/body-shape/Select.jpg", vehicleModeling.imgBodyShapeType);
+        paintGraph(vehicleModeling.cbsa, vehicleModeling.inputGraphPanel, "Steering ", "");
+        paintGraph(vehicleModeling.comboBox5, vehicleModeling.imgWheelForceXAxis, "", "wheel_force_x_axis_");
+        paintGraph(vehicleModeling.cmbWfYAxis, vehicleModeling.imgWheelForceYAxis, "", "wheel_force_y_axis_");
     }
 
     private static void paintGraph(JComboBox comboBox, JPanel imgPanel, String graphTitlePrefix, String graphDataPrefix) {
@@ -149,13 +147,28 @@ public class VehicleModeling {
         String graphTitle = graphTitlePrefix + comboBox.getSelectedItem().toString();
         String graphDataTitle = graphDataPrefix + graphTitle.replaceAll(" ", "_").toLowerCase();
 
-        Dimension size = imgPanel.getSize();
-        size.setSize(size.getWidth() - 20, size.getHeight() - 20);
+        int imgPanelWidth = (int) imgPanel.getSize().getWidth();
+        int imgPanelHeight = (int) imgPanel.getSize().getHeight();
+        Dimension preferredImageSize = new Dimension(imgPanelWidth, imgPanelHeight);
 
-        ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, size);
+        ChartPanel chartPanel = ProcessGraphData.getChart(graphTitle, graphDataTitle, preferredImageSize);
 
         imgPanel.add(BorderLayout.CENTER, chartPanel);
         imgPanel.setVisible(true);
         imgPanel.validate();
+    }
+
+    private static void paintBodyShape(String bodyShapeUrl, JPanel imgBodyShapeType) {
+        try {
+            imgBodyShapeType.removeAll();
+            InputStream resourceAsStream = VehicleModeling.class.getResourceAsStream(bodyShapeUrl);
+            BufferedImage image = ImageIO.read(resourceAsStream);
+            ImageBackgroundPanel ibp = new ImageBackgroundPanel(image, imgBodyShapeType.getWidth(), imgBodyShapeType.getHeight());
+            imgBodyShapeType.add(BorderLayout.CENTER, ibp);
+            imgBodyShapeType.validate();
+            imgBodyShapeType.repaint();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

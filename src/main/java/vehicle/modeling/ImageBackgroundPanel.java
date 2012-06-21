@@ -14,6 +14,8 @@ public class ImageBackgroundPanel extends JPanel {
     int panelHeight;
     int imageWidth;
     int imageHeight;
+    int resizedImageWidth;
+    int resizedImageHeight;
 
 
     ImageBackgroundPanel(BufferedImage image, int panelWidth, int panelHeight) {
@@ -23,20 +25,24 @@ public class ImageBackgroundPanel extends JPanel {
 
         this.imageWidth = image.getWidth();
         this.imageHeight = image.getHeight();
+
+        this.resizedImageWidth = this.imageWidth;
+        this.resizedImageHeight = this.imageHeight;
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         resizeImage();
-        g.drawImage(image, 0, 0, panelWidth, panelHeight, this);
+        g.drawImage(image, 0, 0, resizedImageWidth, resizedImageHeight, this);
         g.dispose();
     }
 
     protected void resizeImage() {
-        if (panelWidth < panelHeight) {
-            panelWidth = Math.round(panelWidth * ((float) imageHeight / imageWidth));
-        } else if (panelHeight < panelWidth) {
-            panelWidth = Math.round(panelHeight * ((float) imageWidth / imageHeight));
+        //assumption panelWidht > panelHeight
+
+        if (imageWidth > panelWidth) {
+            resizedImageWidth = panelWidth;
+            resizedImageHeight = Math.round(imageHeight * ((float) panelWidth / imageWidth));
         }
     }
 }
